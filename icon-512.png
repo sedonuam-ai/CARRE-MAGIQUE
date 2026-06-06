@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <rect width="192" height="192" rx="34.6" fill="#0d1016"/>
+  <!-- outer diamond border -->
+  <polygon points="96,23.04 168.96,96 96,168.96 23.04,96"
+           fill="none" stroke="#d48f14" stroke-width="4"/>
+  <!-- inner diamond filled -->
+  <polygon points="96,42.24 149.76,96 96,149.76 42.24,96"
+           fill="#f5b830"/>
+  <!-- center dot -->
+  <circle cx="96" cy="96" r="13.4" fill="#0d1016"/>
+  <!-- "CM" text -->
+  <text x="96" y="104.6" text-anchor="middle"
+        font-family="monospace" font-weight="bold" font-size="25.0"
+        fill="#0d1016" letter-spacing="1">CM</text>
+</svg>
