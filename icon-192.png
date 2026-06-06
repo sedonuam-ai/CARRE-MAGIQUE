@@ -1,0 +1,45 @@
+# Generate SVG icons for the PWA — gold diamond on dark background
+import os
+
+def make_svg(size):
+    s = size
+    cx = s // 2
+    # Diamond shape points (proportional)
+    m = s * 0.12   # margin
+    t = (cx, m)            # top
+    r = (s - m, cx)        # right
+    b = (cx, s - m)        # bottom
+    l = (m, cx)            # left
+    # Inner diamond (smaller, gold fill)
+    mi = s * 0.22
+    ti = (cx, mi)
+    ri = (s - mi, cx)
+    bi = (cx, s - mi)
+    li = (mi, cx)
+
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{s}" height="{s}" viewBox="0 0 {s} {s}">
+  <rect width="{s}" height="{s}" rx="{s*0.18:.1f}" fill="#0d1016"/>
+  <!-- outer diamond border -->
+  <polygon points="{t[0]},{t[1]} {r[0]},{r[1]} {b[0]},{b[1]} {l[0]},{l[1]}"
+           fill="none" stroke="#d48f14" stroke-width="{max(2,s//48)}"/>
+  <!-- inner diamond filled -->
+  <polygon points="{ti[0]},{ti[1]} {ri[0]},{ri[1]} {bi[0]},{bi[1]} {li[0]},{li[1]}"
+           fill="#f5b830"/>
+  <!-- center dot -->
+  <circle cx="{cx}" cy="{cx}" r="{s*0.07:.1f}" fill="#0d1016"/>
+  <!-- "CM" text -->
+  <text x="{cx}" y="{cx + s*0.045:.1f}" text-anchor="middle"
+        font-family="monospace" font-weight="bold" font-size="{s*0.13:.1f}"
+        fill="#0d1016" letter-spacing="1">CM</text>
+</svg>'''
+    return svg
+
+for size in [192, 512]:
+    with open(f'/home/claude/pwa/icons/icon-{size}.svg', 'w') as f:
+        f.write(make_svg(size))
+    print(f"icon-{size}.svg created")
+
+# Also create a simple favicon (32x32)
+with open('/home/claude/pwa/icons/favicon.svg', 'w') as f:
+    f.write(make_svg(32))
+print("favicon.svg created")
